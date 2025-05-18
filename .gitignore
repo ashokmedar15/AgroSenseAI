@@ -1,0 +1,18 @@
+# 🚫 Ignore large files and unnecessary folders
+*.onnx
+*.pth
+*.bin
+
+# 🚫 Datasets and outputs
+datasets/
+processed_datasets/
+results/
+temp_dataset/
+models/
+
+# 🚫 Environment and cache
+.venv/
+__pycache__/
+*.log
+*.pyc
+*.json

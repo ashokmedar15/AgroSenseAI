@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSense AI - Empowering Farmers</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #c8e6c9);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .header-bg {
+            background: url('https://images.unsplash.com/photo-1500595046743-dd26eb716e7e?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            position: relative;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .btn-hover {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+            background-color: #388e3c;
+        }
+        .dropzone {
+            border: 3px dashed #4caf50;
+            transition: background-color 0.3s ease;
+        }
+        .dropzone.dragover {
+            background-color: #e8f5e9;
+        }
+        .result-box {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in-out;
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        .uploaded-image {
+            max-width: 300px; /* Reduced size for better layout */
+            height: auto;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            margin: 1rem auto; /* Center the image and add spacing */
+            display: block; /* Ensure centering works */
+        }
+        .warning-message {
+            color: #f97316; /* Orange */
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        .debug-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        .error-message {
+            color: #dc2626; /* Red */
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .action-buttons button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+        .action-buttons button:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background: #2e7d32;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        /* Webcam Modal Styles */
+        .webcam-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        .webcam-modal-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        #webcamVideo {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            background: black;
+        }
+        .webcam-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .webcam-buttons button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+        .webcam-buttons button:hover {
+            transform: scale(1.05);
+        }
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            margin: 1rem auto;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4caf50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Section Styling for Diagnosis Details */
+        .diagnosis-section {
+            margin-top: 1rem;
+        }
+        .diagnosis-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+        .diagnosis-section ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .diagnosis-section li {
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        /* Voice and Stop Button Styling */
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .voice-button, .stop-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+        .voice-button:hover, .stop-button:hover {
+            transform: scale(1.05);
+        }
+        .voice-icon, .stop-icon {
+            width: 18px;
+            height: 18px;
+        }
+        @media (max-width: 640px) {
+            .webcam-modal-content {
+                padding: 1rem;
+            }
+            .webcam-buttons button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .action-buttons button, .voice-button, .stop-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            .diagnosis-section h4 {
+                font-size: 1.1rem;
+            }
+            .result-header {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header-bg py-16 text-center relative">
+        <div class="relative z-10">
+            <h1 class="text-5xl font-bold mb-4">AgroSense AI</h1>
+            <p class="text-xl">Empowering Farmers with Smart Crop and Pest Detection</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10">
+        <!-- Image Upload Section -->
+        <section class="fade-in">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-800">Upload or Capture an Image</h2>
+                <p class="text-gray-600">Drag and drop an image or use your webcam to diagnose your crops!</p>
+            </div>
+
+            <!-- Drag and Drop Area -->
+            <div id="dropzone" class="dropzone p-10 mx-auto max-w-lg text-center rounded-lg">
+                <p class="text-gray-700 mb-4">Drop your image here or click to upload</p>
+                <input type="file" id="fileInput" accept="image/*" class="hidden">
+                <button onclick="document.getElementById('fileInput').click()" class="bg-green-600 text-white px-6 py-3 rounded-lg btn-hover">Choose File</button>
+            </div>
+
+            <!-- Webcam Capture Button -->
+            <div class="text-center mt-6">
+                <button id="webcamBtn" class="bg-yellow-500 text-white px-6 py-3 rounded-lg btn-hover">Capture from Webcam</button>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="mt-6 flex justify-center">
+                <label for="language" class="mr-4 text-lg font-semibold text-gray-700">Select Language:</label>
+                <select id="language" class="border-2 border-green-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-600">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="kn">Kannada</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Result Display Section -->
+        <section id="resultSection" class="mt-10 hidden">
+            <div id="result" class="result-box p-6 max-w-2xl mx-auto">
+                <div class="result-header">
+                    <button id="voiceBtn" class="voice-button bg-purple-500 text-white hidden">
+                        <svg class="voice-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12h2m-2 0h-2m2 0v-2m0 2v2m-7-2a4 4 0 11-8 0 4 4 0 018 0zm-4 6c-3.3 0-6-1.3-6-3v-1h12v1c0 1.7-2.7 3-6 3z"></path>
+                        </svg>
+                        Voice
+                    </button>
+                    <h3 class="text-2xl font-semibold text-green-700">Diagnosis Result</h3>
+                    <button id="stopBtn" class="stop-button bg-red-500 text-white hidden">
+                        <svg class="stop-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6h12v12H6z"></path>
+                        </svg>
+                        Stop
+                    </button>
+                </div>
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="loading-spinner"></div>
+                <!-- Uploaded Image Display -->
+                <div class="text-center">
+                    <img id="uploadedImage" class="uploaded-image" src="" alt="Uploaded Image" style="display: none;">
+                </div>
+                <!-- Prediction Overview -->
+                <div id="predictionOverview" class="text-gray-800 mb-4"></div>
+                <p id="errorMessage" class="error-message hidden"></p>
+                <p id="confidenceWarning" class="warning-message hidden"></p>
+                <p id="debugInfo" class="debug-info hidden"></p>
+                <!-- Diagnosis Details -->
+                <div id="diagnosisDetails" class="mt-4"></div>
+                <p id="resultLatency" class="mt-4 text-gray-600 italic"></p>
+                <div class="action-buttons">
+                    <button id="retryBtn" class="bg-blue-500 text-white">Retry</button>
+                    <button id="reportBtn" class="bg-orange-500 text-white">Report Issue</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2025 AgroSense AI. All rights reserved.</p>
+        <p class="mt-2">"Farming looks mighty easy when your plow is a pencil, and you're a thousand miles from the corn field." – Dwight D. Eisenhower</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const webcamBtn = document.getElementById('webcamBtn');
+        const resultSection = document.getElementById('resultSection');
+        const predictionOverview = document.getElementById('predictionOverview');
+        const errorMessage = document.getElementById('errorMessage');
+        const confidenceWarning = document.getElementById('confidenceWarning');
+        const debugInfo = document.getElementById('debugInfo');
+        const diagnosisDetails = document.getElementById('diagnosisDetails');
+        const resultLatency = document.getElementById('resultLatency');
+        const retryBtn = document.getElementById('retryBtn');
+        const reportBtn = document.getElementById('reportBtn');
+        const voiceBtn = document.getElementById('voiceBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const languageSelect = document.getElementById('language');
+        const uploadedImage = document.getElementById('uploadedImage');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        let currentImageData = null; // Store the image data URL
+        let stream = null; // Store the webcam stream
+        let facingMode = 'user'; // Default to front camera ('user' for front, 'environment' for back)
+        let rawPredictionData = null; // Store the raw prediction data
+        let lastNarratedText = ''; // Store the last narrated text for replay
+
+        // Check if Speech Synthesis is supported
+        const speechSynthesis = window.speechSynthesis;
+        let voices = [];
+
+        // Function to load voices with a promise
+        function loadVoices() {
+            return new Promise((resolve) => {
+                voices = speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    console.log('Voices loaded initially:', voices.map(v => `${v.name} (${v.lang})`));
+                    resolve(voices);
+                    return;
+                }
+
+                // Wait for voiceschanged event
+                speechSynthesis.onvoiceschanged = () => {
+                    voices = speechSynthesis.getVoices();
+                    console.log('Voices loaded after voiceschanged:', voices.map(v => `${v.name} (${v.lang})`));
+                    resolve(voices);
+                };
+
+                // Fallback: if voiceschanged doesn't fire, retry after a timeout
+                setTimeout(() => {
+                    voices = speechSynthesis.getVoices();
+                    if (voices.length > 0) {
+                        console.log('Voices loaded after timeout:', voices.map(v => `${v.name} (${v.lang})`));
+                        resolve(voices);
+                    } else {
+                        console.warn('No voices loaded after timeout.');
+                        resolve([]);
+                    }
+                }, 2000);
+            });
+        }
+
+        // Initialize voices on page load
+        loadVoices();
+
+        // Drag and Drop Functionality
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    currentImageData = event.target.result;
+                    handleFileUpload(files[0]);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    currentImageData = event.target.result;
+                    handleFileUpload(fileInput.files[0]);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+
+        // Check if webcam is available
+        async function checkWebcamAvailability() {
+            try {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                return videoDevices.length > 0;
+            } catch (err) {
+                console.error('Error checking webcam availability:', err);
+                return false;
+            }
+        }
+
+        // Webcam Capture Functionality
+        webcamBtn.addEventListener('click', async () => {
+            // Check if we're in a secure context
+            if (!window.isSecureContext) {
+                alert('Webcam access requires a secure context (HTTPS). Please host the app on HTTPS or use localhost for testing.');
+                return;
+            }
+
+            // Check webcam availability
+            const webcamAvailable = await checkWebcamAvailability();
+            if (!webcamAvailable) {
+                alert('No webcam found on this device. Please use a device with a camera or upload an image instead.');
+                return;
+            }
+
+            startWebcam();
+        });
+
+        async function startWebcam() {
+            try {
+                // Stop any existing stream
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+
+                // Request webcam access with the current facingMode
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: facingMode }
+                });
+
+                // Create the webcam modal
+                const modal = document.createElement('div');
+                modal.className = 'webcam-modal';
+                modal.innerHTML = `
+                    <div class="webcam-modal-content">
+                        <video id="webcamVideo" autoplay playsinline></video>
+                        <div class="webcam-buttons">
+                            <button id="switchCameraBtn" class="bg-blue-500 text-white">Switch Camera</button>
+                            <button id="captureBtn" class="bg-green-600 text-white">Capture</button>
+                            <button id="cancelBtn" class="bg-red-500 text-white">Cancel</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+                const webcamVideo = document.getElementById('webcamVideo');
+                webcamVideo.srcObject = stream;
+
+                // Ensure the video is playing
+                webcamVideo.onloadedmetadata = () => {
+                    webcamVideo.play();
+                };
+
+                // Switch camera button
+                document.getElementById('switchCameraBtn').addEventListener('click', () => {
+                    facingMode = facingMode === 'user' ? 'environment' : 'user';
+                    modal.remove();
+                    startWebcam(); // Restart webcam with new facingMode
+                });
+
+                // Capture button
+                document.getElementById('captureBtn').addEventListener('click', () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = webcamVideo.videoWidth;
+                    canvas.height = webcamVideo.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(webcamVideo, 0, 0, canvas.width, canvas.height);
+                    const imageData = canvas.toDataURL('image/jpeg', 0.8);
+                    currentImageData = imageData;
+                    handleWebcamUpload(imageData);
+                    cleanupWebcam(modal);
+                });
+
+                // Cancel button
+                document.getElementById('cancelBtn').addEventListener('click', () => {
+                    cleanupWebcam(modal);
+                });
+
+            } catch (err) {
+                console.error('Error accessing webcam:', err);
+                let errorMessage = 'Unable to access webcam. ';
+                if (err.name === 'NotAllowedError') {
+                    errorMessage += 'Please grant permission to access the camera. You may need to enable camera permissions in your browser settings.';
+                } else if (err.name === 'NotFoundError') {
+                    errorMessage += 'No camera found on this device. Please use a device with a camera or upload an image instead.';
+                } else if (err.name === 'SecurityError') {
+                    errorMessage += 'Webcam access requires a secure context (HTTPS). Please host the app on HTTPS or use localhost for testing.';
+                } else {
+                    errorMessage += 'An error occurred: ' + err.message;
+                }
+                alert(errorMessage);
+            }
+        }
+
+        function cleanupWebcam(modal) {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            modal.remove();
+        }
+
+        // Show loading spinner
+        function showLoading() {
+            resultSection.classList.remove('hidden');
+            loadingSpinner.style.display = 'block';
+            predictionOverview.textContent = 'Processing your image...';
+            errorMessage.classList.add('hidden');
+            confidenceWarning.classList.add('hidden');
+            debugInfo.classList.add('hidden');
+            diagnosisDetails.innerHTML = '';
+            resultLatency.textContent = '';
+            voiceBtn.classList.add('hidden');
+            stopBtn.classList.add('hidden');
+            window.scrollTo({ top: resultSection.offsetTop, behavior: 'smooth' });
+        }
+
+        // Hide loading spinner
+        function hideLoading() {
+            loadingSpinner.style.display = 'none';
+        }
+
+        // Helper function to format prediction names for display
+        function formatPredictionName(name) {
+            // Remove underscores and replace with spaces
+            let formatted = name.replace(/_/g, ' ');
+            // Split camelCase names for better readability (e.g., "FruitFly" → "Fruit Fly")
+            formatted = formatted.replace(/([a-z])([A-Z])/g, '$1 $2');
+            // Remove any remaining crop prefixes if necessary
+            const cropPrefixes = ['Apple', 'Potato', 'Tomato'];
+            cropPrefixes.forEach(prefix => {
+                if (formatted.startsWith(prefix)) {
+                    formatted = formatted.replace(prefix, '').trim();
+                }
+            });
+            // Handle specific cases
+            if (formatted.includes('Healthy')) {
+                formatted = 'Healthy';
+            }
+            return formatted;
+        }
+
+        // Translate and display results
+        async function translateAndDisplay(data, lang) {
+            try {
+                // Prepare texts to translate
+                const textsToTranslate = [];
+                if (data.message) {
+                    textsToTranslate.push(data.message);
+                    if (data.debug_info) {
+                        textsToTranslate.push(data.debug_info);
+                    }
+                } else if (data.prediction) {
+                    // Format the prediction name before translation
+                    const formattedPrediction = formatPredictionName(data.prediction);
+                    textsToTranslate.push(`Prediction: ${formattedPrediction}`);
+                    textsToTranslate.push(`Confidence: ${data.confidence}`);
+                    textsToTranslate.push(`Severity: ${data.severity || 'N/A'}`);
+                    textsToTranslate.push(...data.details);
+                }
+                textsToTranslate.push(data.latency);
+
+                // Send translation request
+                const response = await fetch('/api/translate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ texts: textsToTranslate, language: lang })
+                });
+                const translationData = await response.json();
+                if (translationData.error) {
+                    throw new Error(translationData.error);
+                }
+
+                const translatedTexts = translationData.translated_texts;
+                let textIndex = 0;
+
+                // Create a new data object with translated texts
+                const translatedData = { ...data };
+                if (data.message) {
+                    translatedData.message = translatedTexts[textIndex++];
+                    if (data.debug_info) {
+                        translatedData.debug_info = translatedTexts[textIndex++];
+                    }
+                } else if (data.prediction) {
+                    translatedData.formattedPrediction = translatedTexts[textIndex++].replace('Prediction: ', '');
+                    translatedData.confidence = translatedTexts[textIndex++].replace('Confidence: ', '');
+                    translatedData.severity = translatedTexts[textIndex++].replace('Severity: ', '');
+                    translatedData.details = translatedTexts.slice(textIndex, textIndex + data.details.length);
+                    textIndex += data.details.length;
+                }
+                translatedData.latency = translatedTexts[textIndex++];
+
+                displayResult(translatedData);
+                // Automatically trigger voice narration after displaying results
+                if (translatedData.prediction) {
+                    await narrateResults(translatedData, lang);
+                }
+            } catch (err) {
+                console.error('Translation error:', err);
+                displayError(`Failed to translate the results: ${err.message}. Displaying in English.`);
+                displayResult(data); // Fallback to English
+            }
+        }
+
+        // Handle File Upload
+        async function handleFileUpload(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('language', languageSelect.value);
+
+            // Show loading spinner
+            showLoading();
+
+            // Set up fetch with increased timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30-second timeout
+
+            try {
+                const response = await fetch('/api/predict', {
+                    method: 'POST',
+                    body: formData,
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                const data = await response.json();
+                hideLoading();
+
+                // Store raw prediction data
+                rawPredictionData = data;
+
+                // Translate and display
+                await translateAndDisplay(data, languageSelect.value);
+            } catch (err) {
+                clearTimeout(timeoutId);
+                hideLoading();
+                console.error('Error during file upload:', err);
+                let errorText = 'An error occurred while processing the image. ';
+                if (err.name === 'AbortError') {
+                    errorText += 'The request timed out. The server might be overloaded or the translation service is slow. Please try again later or switch to English.';
+                } else {
+                    errorText += 'Please check your network connection and try again.';
+                }
+                displayError(errorText);
+            }
+        }
+
+        // Handle Webcam Upload
+        async function handleWebcamUpload(imageData) {
+            // Show loading spinner
+            showLoading();
+
+            // Set up fetch with increased timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30-second timeout
+
+            try {
+                const response = await fetch('/api/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ image: imageData, language: languageSelect.value }),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                const data = await response.json();
+                hideLoading();
+
+                // Store raw prediction data
+                rawPredictionData = data;
+
+                // Translate and display
+                await translateAndDisplay(data, languageSelect.value);
+            } catch (err) {
+                clearTimeout(timeoutId);
+                hideLoading();
+                console.error('Error during webcam upload:', err);
+                let errorText = 'An error occurred while processing the webcam image. ';
+                if (err.name === 'AbortError') {
+                    errorText += 'The request timed out. The server might be overloaded or the translation service is slow. Please try again later or switch to English.';
+                } else {
+                    errorText += 'Please check your network connection and try again.';
+                }
+                displayError(errorText);
+            }
+        }
+
+        // Narrate the prediction results
+        async function narrateResults(data, lang) {
+            if (!speechSynthesis) {
+                console.warn('Speech Synthesis not supported in this browser.');
+                displayError('Voice narration is not supported in this browser.');
+                return;
+            }
+
+            // Ensure voices are loaded
+            voices = await loadVoices();
+            if (voices.length === 0) {
+                console.warn('No voices available for narration.');
+                displayError('No voices available for narration. Please ensure your browser or system supports text-to-speech.');
+                return;
+            }
+
+            // Cancel any ongoing speech
+            speechSynthesis.cancel();
+
+            // Prepare the text to narrate
+            let textToNarrate = '';
+            if (data.message) {
+                textToNarrate = data.message;
+            } else if (data.formattedPrediction) {
+                textToNarrate = `Prediction: ${data.formattedPrediction}. Confidence: ${data.confidence}. Severity: ${data.severity || 'N/A'}. `;
+                data.details.forEach(item => {
+                    if (!item.endsWith(':')) { // Skip section headers
+                        textToNarrate += item + ' ';
+                    }
+                });
+            }
+
+            // Clean up the text (remove bullet points)
+            textToNarrate = textToNarrate.replace(/- /g, '');
+
+            // Store the text for replay
+            lastNarratedText = textToNarrate;
+
+            // Map the selected language to a voice
+            const languageMap = {
+                'en': 'en-IN', // English (India)
+                'hi': 'hi-IN', // Hindi
+                'te': 'te-IN', // Telugu
+                'ta': 'ta-IN', // Tamil
+                'ml': 'ml-IN', // Malayalam
+                'kn': 'kn-IN'  // Kannada
+            };
+            const targetLang = languageMap[lang] || 'en-IN'; // Fallback to English
+            const langBase = targetLang.split('-')[0]; // e.g., 'kn' from 'kn-IN'
+
+            // Find a suitable voice
+            let selectedVoice = voices.find(voice => voice.lang === targetLang);
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => voice.lang.startsWith(langBase));
+            }
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => voice.lang.startsWith('en'));
+                if (selectedVoice) {
+                    console.warn(`Voice for language ${targetLang} not found. Falling back to English.`);
+                    // Narrate a message in English to inform the user
+                    const fallbackMessage = `Voice narration for ${lang} is not available. Narrating in English instead.`;
+                    const fallbackUtterance = new SpeechSynthesisUtterance(fallbackMessage);
+                    fallbackUtterance.voice = selectedVoice;
+                    fallbackUtterance.lang = 'en-IN';
+                    speechSynthesis.speak(fallbackUtterance);
+                }
+            }
+
+            if (!selectedVoice) {
+                console.warn('No suitable voice found for narration.');
+                displayError('No suitable voice found for narration in any language. Please ensure your browser or system supports text-to-speech.');
+                return;
+            }
+
+            // Create the speech utterance
+            const utterance = new SpeechSynthesisUtterance(textToNarrate);
+            utterance.voice = selectedVoice;
+            utterance.lang = targetLang;
+            utterance.rate = 0.9; // Slightly slower for clarity
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            // Log the selected voice for debugging
+            console.log(`Narrating in ${targetLang} using voice: ${selectedVoice.name} (${selectedVoice.lang})`);
+
+            // Show the stop button when narration starts
+            utterance.onstart = () => {
+                stopBtn.classList.remove('hidden');
+            };
+
+            // Hide the stop button when narration ends
+            utterance.onend = () => {
+                stopBtn.classList.add('hidden');
+            };
+
+            // Speak the text
+            speechSynthesis.speak(utterance);
+
+            // Show the voice button after narration starts
+            voiceBtn.classList.remove('hidden');
+        }
+
+        // Display Prediction Result
+        function displayResult(data) {
+            resultSection.classList.remove('hidden');
+            predictionOverview.textContent = '';
+            errorMessage.classList.add('hidden');
+            confidenceWarning.classList.add('hidden');
+            debugInfo.classList.add('hidden');
+            diagnosisDetails.innerHTML = '';
+            voiceBtn.classList.add('hidden');
+            stopBtn.classList.add('hidden');
+
+            // Display the uploaded image
+            if (currentImageData) {
+                uploadedImage.src = currentImageData;
+                uploadedImage.style.display = 'block';
+            } else {
+                uploadedImage.style.display = 'none';
+            }
+
+            if (data.message) {
+                // Handle OOD or error messages
+                predictionOverview.textContent = data.message;
+                if (data.debug_info) {
+                    debugInfo.textContent = data.debug_info;
+                    debugInfo.classList.remove('hidden');
+                }
+            } else if (data.formattedPrediction) {
+                // Display prediction overview with severity
+                let overview = `<p><strong>Prediction:</strong> ${data.formattedPrediction}</p>`;
+                overview += `<p><strong>Confidence:</strong> ${data.confidence}</p>`;
+                overview += `<p><strong>Severity:</strong> ${data.severity || 'N/A'}</p>`;
+                predictionOverview.innerHTML = overview;
+
+                // Show confidence warning if applicable
+                const confidenceValue = parseFloat(data.confidence);
+                if (confidenceValue < 70) {
+                    confidenceWarning.textContent = 'This prediction has low confidence and may be incorrect. Please try another image.';
+                    confidenceWarning.classList.remove('hidden');
+                }
+
+                // Process diagnosis details with sections
+                let currentSection = null;
+                let sectionPoints = [];
+                data.details.forEach(item => {
+                    if (item.endsWith(':')) {
+                        // Close previous section if exists
+                        if (currentSection && sectionPoints.length > 0) {
+                            const sectionDiv = document.createElement('div');
+                            sectionDiv.className = 'diagnosis-section';
+                            sectionDiv.innerHTML = `
+                                <h4>${currentSection}</h4>
+                                <ul>
+                                    ${sectionPoints.map(point => `<li>${point}</li>`).join('')}
+                                </ul>
+                            `;
+                            diagnosisDetails.appendChild(sectionDiv);
+                        }
+                        // Start new section
+                        currentSection = item.slice(0, -1); // Remove the colon
+                        sectionPoints = [];
+                    } else {
+                        // Add bullet point to current section
+                        sectionPoints.push(item);
+                    }
+                });
+                // Close the last section
+                if (currentSection && sectionPoints.length > 0) {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'diagnosis-section';
+                    sectionDiv.innerHTML = `
+                        <h4>${currentSection}</h4>
+                        <ul>
+                            ${sectionPoints.map(point => `<li>${point}</li>`).join('')}
+                        </ul>
+                    `;
+                    diagnosisDetails.appendChild(sectionDiv);
+                }
+            }
+            resultLatency.textContent = data.latency || '';
+            window.scrollTo({ top: resultSection.offsetTop, behavior: 'smooth' });
+        }
+
+        // Display Error Message
+        function displayError(message) {
+            resultSection.classList.remove('hidden');
+            predictionOverview.textContent = '';
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            confidenceWarning.classList.add('hidden');
+            debugInfo.classList.add('hidden');
+            diagnosisDetails.innerHTML = '';
+            resultLatency.textContent = '';
+            voiceBtn.classList.add('hidden');
+            stopBtn.classList.add('hidden');
+
+            // Display the uploaded image even if there's an error
+            if (currentImageData) {
+                uploadedImage.src = currentImageData;
+                uploadedImage.style.display = 'block';
+            } else {
+                uploadedImage.style.display = 'none';
+            }
+
+            window.scrollTo({ top: resultSection.offsetTop, behavior: 'smooth' });
+        }
+
+        // Language Change Handler
+        languageSelect.addEventListener('change', async () => {
+            if (rawPredictionData) {
+                showLoading();
+                await translateAndDisplay(rawPredictionData, languageSelect.value);
+                hideLoading();
+            }
+        });
+
+        // Voice Button Handler
+        voiceBtn.addEventListener('click', async () => {
+            if (lastNarratedText) {
+                // Reload voices in case they weren't available initially
+                voices = await loadVoices();
+                if (voices.length === 0) {
+                    displayError('No voices available for narration. Please ensure your browser or system supports text-to-speech.');
+                    return;
+                }
+
+                speechSynthesis.cancel(); // Stop any ongoing speech
+                const targetLang = languageMap[languageSelect.value] || 'en-IN';
+                const langBase = targetLang.split('-')[0];
+
+                let selectedVoice = voices.find(voice => voice.lang === targetLang);
+                if (!selectedVoice) {
+                    selectedVoice = voices.find(voice => voice.lang.startsWith(langBase));
+                }
+                if (!selectedVoice) {
+                    selectedVoice = voices.find(voice => voice.lang.startsWith('en'));
+                    if (selectedVoice) {
+                        const fallbackMessage = `Voice narration for ${languageSelect.value} is not available. Narrating in English instead.`;
+                        const fallbackUtterance = new SpeechSynthesisUtterance(fallbackMessage);
+                        fallbackUtterance.voice = selectedVoice;
+                        fallbackUtterance.lang = 'en-IN';
+                        speechSynthesis.speak(fallbackUtterance);
+                    }
+                }
+
+                if (selectedVoice) {
+                    const utterance = new SpeechSynthesisUtterance(lastNarratedText);
+                    utterance.voice = selectedVoice;
+                    utterance.lang = targetLang;
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 1.0;
+
+                    // Show the stop button when narration starts
+                    utterance.onstart = () => {
+                        stopBtn.classList.remove('hidden');
+                    };
+
+                    // Hide the stop button when narration ends
+                    utterance.onend = () => {
+                        stopBtn.classList.add('hidden');
+                    };
+
+                    speechSynthesis.speak(utterance);
+                } else {
+                    displayError('No suitable voice found for narration in any language. Please ensure your browser or system supports text-to-speech.');
+                }
+            }
+        });
+
+        // Stop Button Handler
+        stopBtn.addEventListener('click', () => {
+            speechSynthesis.cancel();
+            stopBtn.classList.add('hidden');
+        });
+
+        // Retry Button
+        retryBtn.addEventListener('click', () => {
+            resultSection.classList.add('hidden');
+            currentImageData = null;
+            rawPredictionData = null;
+            lastNarratedText = '';
+            uploadedImage.src = '';
+            uploadedImage.style.display = 'none';
+            predictionOverview.textContent = '';
+            errorMessage.classList.add('hidden');
+            diagnosisDetails.innerHTML = '';
+            resultLatency.textContent = '';
+            confidenceWarning.classList.add('hidden');
+            debugInfo.classList.add('hidden');
+            voiceBtn.classList.add('hidden');
+            stopBtn.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Report Issue Button (Placeholder)
+        reportBtn.addEventListener('click', () => {
+            alert('Thank you for reporting this issue! Our team will review it to improve the app.');
+            // In a real app, this could send feedback to a server
+        });
+
+        // Language map for voice selection
+        const languageMap = {
+            'en': 'en-IN',
+            'hi': 'hi-IN',
+            'te': 'te-IN',
+            'ta': 'ta-IN',
+            'ml': 'ml-IN',
+            'kn': 'kn-IN'
+        };
+    </script>
+</body>
+</html>
