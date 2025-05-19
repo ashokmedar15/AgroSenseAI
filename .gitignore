@@ -1,0 +1,29 @@
+# Virtual environment
+venv/
+
+# Large model files in app/
+app/distilgpt2.onnx
+app/distilgpt2_quantized.onnx
+app/distilgpt2/
+
+# Previously added exclusions (for completeness)
+datasets/
+processed_datasets/
+temp_dataset/
+models/
+*.pth
+distilgpt2_optimized/
+distilgpt2_onnx/
+distilgpt2_quantized_onnx/
+*.log
+*.logs
+*.jsonl
+External Libraries/
+Scratches and Consoles/
+# Virtual environment
+venv/
+
+# Large model files in app/
+app/distilgpt2.onnx
+app/distilgpt2_quantized.onnx
+app/distilgpt2/
