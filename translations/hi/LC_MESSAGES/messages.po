@@ -1,0 +1,321 @@
+# Hindi translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-05-04 20:08+0530\n"
+"PO-Revision-Date: 2025-05-04 19:51+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: hi\n"
+"Language-Team: hi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: app/app.py:158 app/app.py:159 app/app.py:160
+msgid "No information available"
+msgstr ""
+
+#: app/app.py:190
+#, python-format
+msgid "Your %(crop)s crop is healthy."
+msgstr ""
+
+#: app/app.py:193
+msgid "Continue current practices."
+msgstr ""
+
+#: app/app.py:201
+#, python-format
+msgid "Your %(crop)s crop has a %(issue_type)s: %(display_name)s."
+msgstr ""
+
+#: app/app.py:214
+msgid ""
+"Unable to identify as a crop. Please upload an image of an apple, potato,"
+" or tomato."
+msgstr ""
+
+#: app/app.py:217
+msgid "Please upload an image of a crop (apple, potato, or tomato)."
+msgstr ""
+
+#: app/app.py:359 app/app.py:401
+msgid "Not available."
+msgstr ""
+
+#: app/app.py:361 app/app.py:403
+msgid "Please check with an expert."
+msgstr ""
+
+#: app/app.py:365 app/app.py:407
+msgid "Check your plants often."
+msgstr ""
+
+#: app/app.py:365 app/app.py:407
+msgid "Use organic pest control if needed."
+msgstr ""
+
+#: app/app.py:369 app/app.py:411
+msgid "Keep your farm clean."
+msgstr ""
+
+#: app/app.py:369 app/app.py:411
+msgid "Remove sick plants quickly."
+msgstr ""
+
+#: app/app.py:374 app/app.py:416
+#, python-format
+msgid ""
+"- Problem: %(message)s (%(severity)s, %(confidence)s sure). This pest can"
+" harm your crop if not managed."
+msgstr ""
+
+#: app/app.py:376 app/app.py:418
+#, python-format
+msgid "- Why: %(cause_text)s"
+msgstr ""
+
+#: app/app.py:377 app/app.py:419
+#, python-format
+msgid "- Fix: %(recommendation_text)s"
+msgstr ""
+
+#: app/app.py:378 app/app.py:420
+#, python-format
+msgid "- Prevent: %(prevention_text)s"
+msgstr ""
+
+#: app/app.py:386
+#, python-format
+msgid "- Status: %(message)s Everything looks good for now."
+msgstr ""
+
+#: app/app.py:387
+#, python-format
+msgid "- Confidence: %(confidence)s. Keep up your current practices."
+msgstr ""
+
+#: app/app.py:389
+#, python-format
+msgid "- Action: %(action)s Check your crops weekly to stay safe."
+msgstr ""
+
+#: app/app.py:393
+#, python-format
+msgid "- Status: %(message)s"
+msgstr ""
+
+#: app/app.py:394
+#, python-format
+msgid "- Action: %(action)s"
+msgstr ""
+
+#: app/app.py:482
+msgid "No file provided in the request."
+msgstr ""
+
+#: app/app.py:485
+msgid "No selected file."
+msgstr ""
+
+#: app/app.py:489
+msgid "No image data provided in JSON."
+msgstr ""
+
+#: app/app.py:493
+msgid "Failed to process webcam image."
+msgstr ""
+
+#: app/app.py:495
+#, python-format
+msgid "Unsupported Content-Type: %(content_type)s"
+msgstr ""
+
+#: app/app.py:525
+#, python-format
+msgid "Could not determine crop for predicted class: %(pred_class)s"
+msgstr ""
+
+#: app/app.py:536 app/app.py:545
+msgid "Prediction failed"
+msgstr ""
+
+#: app/app.py:555
+msgid "No file uploaded"
+msgstr ""
+
+#~ msgid "AgroSense AI"
+#~ msgstr "एग्रोसेंस एआई"
+
+#~ msgid "Language"
+#~ msgstr "भाषा"
+
+#~ msgid "English"
+#~ msgstr "अंग्रेजी"
+
+#~ msgid "Hindi"
+#~ msgstr "हिन्दी"
+
+#~ msgid "Telugu"
+#~ msgstr "तेलुगु"
+
+#~ msgid "Tamil"
+#~ msgstr "तमिल"
+
+#~ msgid "Malayalam"
+#~ msgstr "मलयालम"
+
+#~ msgid "Upload an Image"
+#~ msgstr "एक छवि अपलोड करें"
+
+#~ msgid "Or Use Webcam"
+#~ msgstr "या वेबकैम का उपयोग करें"
+
+#~ msgid "Start Webcam"
+#~ msgstr "वेबकैम शुरू करें"
+
+#~ msgid "Capture"
+#~ msgstr "कैप्चर करें"
+
+#~ msgid "Predict"
+#~ msgstr "भविष्यवाणी करें"
+
+#~ msgid "Diagnosis Results"
+#~ msgstr "निदान परिणाम"
+
+#~ msgid "Processing"
+#~ msgstr "प्रसंस्करण"
+
+#~ msgid "Uploaded Image"
+#~ msgstr "अपलोड की गई छवि"
+
+#~ msgid "Prediction"
+#~ msgstr "भविष्यवाणी"
+
+#~ msgid "Latency"
+#~ msgstr "विलंबता"
+
+#~ msgid "Analyze New Image"
+#~ msgstr "नई छवि का विश्लेषण करें"
+
+#~ msgid "Debug Info"
+#~ msgstr "डिबग जानकारी"
+
+#~ msgid "© 2025 AgroSense AI. All rights reserved."
+#~ msgstr "© 2025 एग्रोसेंस एआई। सभी अधिकार सुरक्षित।"
+
+#~ msgid ""
+#~ "Image is too small. Please upload "
+#~ "an image with dimensions at least "
+#~ "100x100 pixels."
+#~ msgstr "छवि बहुत छोटी है। कृपया कम से कम 100x100 पिक्सल की छवि अपलोड करें।"
+
+#~ msgid "Selected"
+#~ msgstr "चयनित"
+
+#~ msgid "File selected"
+#~ msgstr "फाइल चयनित"
+
+#~ msgid "Webcam started"
+#~ msgstr "वेबकैम शुरू हुआ"
+
+#~ msgid "Error accessing webcam"
+#~ msgstr "वेबकैम तक पहुंचने में त्रुटि"
+
+#~ msgid "Failed to access webcam. Please ensure you have granted permission."
+#~ msgstr "वेबकैम तक पहुंचने में विफल। कृपया सुनिश्चित करें कि आपने अनुमति दी है।"
+
+#~ msgid "Captured webcam image"
+#~ msgstr "वेबकैम छवि कैप्चर की गई"
+
+#~ msgid "Sending resized file for prediction"
+#~ msgstr "भविष्यवाणी के लिए रिसाइज़ की गई फाइल भेजी जा रही है"
+
+#~ msgid "Sending webcam frame for prediction"
+#~ msgstr "भविष्यवाणी के लिए वेबकैम फ्रेम भेजा जा रहा है"
+
+#~ msgid "Response status"
+#~ msgstr "प्रतिक्रिया स्थिति"
+
+#~ msgid "HTTP error! Status"
+#~ msgstr "HTTP त्रुटि! स्थिति"
+
+#~ msgid "Fetch error"
+#~ msgstr "प्राप्त करने में त्रुटि"
+
+#~ msgid "Failed to fetch prediction"
+#~ msgstr "भविष्यवाणी प्राप्त करने में विफल"
+
+#~ msgid "Please upload an image or capture from webcam."
+#~ msgstr "कृपया एक छवि अपलोड करें या वेबकैम से कैप्चर करें।"
+
+#~ msgid "No image data to predict"
+#~ msgstr "भविष्यवाणी के लिए कोई छवि डेटा नहीं"
+
+#~ msgid "N/A"
+#~ msgstr "लागू नहीं"
+
+#~ msgid "Prediction error"
+#~ msgstr "भविष्यवाणी त्रुटि"
+
+#~ msgid "Prediction successful"
+#~ msgstr "भविष्यवाणी सफल"
+
+#~ msgid "App reset"
+#~ msgstr "ऐप रीसेट"
+
+#~ msgid "Error changing language"
+#~ msgstr "भाषा बदलने में त्रुटि"
+
+#~ msgid "Failed to change language. Please try again."
+#~ msgstr "भाषा बदलने में विफल। कृपया फिर से प्रयास करें।"
+
+#~ msgid ""
+#~ "Anthracnose is caused by a group "
+#~ "of fungi, most commonly from the "
+#~ "Colletotrichum species. This fungus thrives"
+#~ " in warm, moist, and humid "
+#~ "conditions, which makes it very common"
+#~ " in tropical and subtropical areas."
+#~ msgstr ""
+#~ "एंथ्रेक्नोज एक समूह कवक के कारण "
+#~ "होता है, जो आमतौर पर कोलेटोट्रिकम "
+#~ "प्रजातियों से होता है। यह कवक "
+#~ "गर्म, नम और आर्द्र परिस्थितियों में "
+#~ "पनपता है, जो इसे उष्णकटिबंधीय और "
+#~ "उपोष्णकटिबंधीय क्षेत्रों में बहुत आम "
+#~ "बनाता है।"
+
+#~ msgid ""
+#~ "Start with field hygiene. Regularly "
+#~ "remove and destroy all fallen leaves,"
+#~ " fruits, and infected plant parts."
+#~ msgstr ""
+#~ "खेत की स्वच्छता से शुरू करें। "
+#~ "नियमित रूप से सभी गिरे हुए पत्ते,"
+#~ " फल और संक्रमित पौधों के हिस्सों "
+#~ "को हटाएं और नष्ट करें।"
+
+#~ msgid ""
+#~ "Monitor the crop frequently, especially "
+#~ "after rainy or humid weather. If "
+#~ "early symptoms of anthracnose appear—like "
+#~ "black spots or leaf curl—remove those"
+#~ " parts immediately and destroy them "
+#~ "away from the field."
+#~ msgstr ""
+#~ "फसल की बार-बार निगरानी करें, खासकर "
+#~ "बारिश या आर्द्र मौसम के बाद। यदि"
+#~ " एंथ्रेक्नोज के शुरुआती लक्षण दिखाई "
+#~ "देते हैं—जैसे काले धब्बे या पत्ती "
+#~ "का मुड़ना—उन हिस्सों को तुरंत हटा "
+#~ "दें और खेत से दूर नष्ट कर "
+#~ "दें।"
+

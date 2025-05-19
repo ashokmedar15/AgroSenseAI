@@ -1,0 +1,326 @@
+# Malayalam translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-05-04 20:08+0530\n"
+"PO-Revision-Date: 2025-05-04 19:51+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ml\n"
+"Language-Team: ml <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: app/app.py:158 app/app.py:159 app/app.py:160
+msgid "No information available"
+msgstr ""
+
+#: app/app.py:190
+#, python-format
+msgid "Your %(crop)s crop is healthy."
+msgstr ""
+
+#: app/app.py:193
+msgid "Continue current practices."
+msgstr ""
+
+#: app/app.py:201
+#, python-format
+msgid "Your %(crop)s crop has a %(issue_type)s: %(display_name)s."
+msgstr ""
+
+#: app/app.py:214
+msgid ""
+"Unable to identify as a crop. Please upload an image of an apple, potato,"
+" or tomato."
+msgstr ""
+
+#: app/app.py:217
+msgid "Please upload an image of a crop (apple, potato, or tomato)."
+msgstr ""
+
+#: app/app.py:359 app/app.py:401
+msgid "Not available."
+msgstr ""
+
+#: app/app.py:361 app/app.py:403
+msgid "Please check with an expert."
+msgstr ""
+
+#: app/app.py:365 app/app.py:407
+msgid "Check your plants often."
+msgstr ""
+
+#: app/app.py:365 app/app.py:407
+msgid "Use organic pest control if needed."
+msgstr ""
+
+#: app/app.py:369 app/app.py:411
+msgid "Keep your farm clean."
+msgstr ""
+
+#: app/app.py:369 app/app.py:411
+msgid "Remove sick plants quickly."
+msgstr ""
+
+#: app/app.py:374 app/app.py:416
+#, python-format
+msgid ""
+"- Problem: %(message)s (%(severity)s, %(confidence)s sure). This pest can"
+" harm your crop if not managed."
+msgstr ""
+
+#: app/app.py:376 app/app.py:418
+#, python-format
+msgid "- Why: %(cause_text)s"
+msgstr ""
+
+#: app/app.py:377 app/app.py:419
+#, python-format
+msgid "- Fix: %(recommendation_text)s"
+msgstr ""
+
+#: app/app.py:378 app/app.py:420
+#, python-format
+msgid "- Prevent: %(prevention_text)s"
+msgstr ""
+
+#: app/app.py:386
+#, python-format
+msgid "- Status: %(message)s Everything looks good for now."
+msgstr ""
+
+#: app/app.py:387
+#, python-format
+msgid "- Confidence: %(confidence)s. Keep up your current practices."
+msgstr ""
+
+#: app/app.py:389
+#, python-format
+msgid "- Action: %(action)s Check your crops weekly to stay safe."
+msgstr ""
+
+#: app/app.py:393
+#, python-format
+msgid "- Status: %(message)s"
+msgstr ""
+
+#: app/app.py:394
+#, python-format
+msgid "- Action: %(action)s"
+msgstr ""
+
+#: app/app.py:482
+msgid "No file provided in the request."
+msgstr ""
+
+#: app/app.py:485
+msgid "No selected file."
+msgstr ""
+
+#: app/app.py:489
+msgid "No image data provided in JSON."
+msgstr ""
+
+#: app/app.py:493
+msgid "Failed to process webcam image."
+msgstr ""
+
+#: app/app.py:495
+#, python-format
+msgid "Unsupported Content-Type: %(content_type)s"
+msgstr ""
+
+#: app/app.py:525
+#, python-format
+msgid "Could not determine crop for predicted class: %(pred_class)s"
+msgstr ""
+
+#: app/app.py:536 app/app.py:545
+msgid "Prediction failed"
+msgstr ""
+
+#: app/app.py:555
+msgid "No file uploaded"
+msgstr ""
+
+#~ msgid "AgroSense AI"
+#~ msgstr "അഗ്രോസെൻസ് എഐ"
+
+#~ msgid "Language"
+#~ msgstr "ഭാഷ"
+
+#~ msgid "English"
+#~ msgstr "ഇംഗ്ലീഷ്"
+
+#~ msgid "Hindi"
+#~ msgstr "ഹിന്ദി"
+
+#~ msgid "Telugu"
+#~ msgstr "തെലുഗു"
+
+#~ msgid "Tamil"
+#~ msgstr "തമിഴ്"
+
+#~ msgid "Malayalam"
+#~ msgstr "മലയാളം"
+
+#~ msgid "Upload an Image"
+#~ msgstr "ഒരു ചിത്രം അപ്‌ലോഡ് ചെയ്യുക"
+
+#~ msgid "Or Use Webcam"
+#~ msgstr "അല്ലെങ്കിൽ വെബ്ക്യാമിനെ ഉപയോഗിക്കുക"
+
+#~ msgid "Start Webcam"
+#~ msgstr "വെബ്ക്യാം ആരംഭിക്കുക"
+
+#~ msgid "Capture"
+#~ msgstr "പകർത്തുക"
+
+#~ msgid "Predict"
+#~ msgstr "പ്രവചിക്കുക"
+
+#~ msgid "Diagnosis Results"
+#~ msgstr "നിർണയ ഫലങ്ങൾ"
+
+#~ msgid "Processing"
+#~ msgstr "പ്രോസസ്സിംഗ്"
+
+#~ msgid "Uploaded Image"
+#~ msgstr "അപ്‌ലോഡ് ചെയ്ത ചിത്രം"
+
+#~ msgid "Prediction"
+#~ msgstr "പ്രവചനം"
+
+#~ msgid "Latency"
+#~ msgstr "ലേറ്റൻസി"
+
+#~ msgid "Analyze New Image"
+#~ msgstr "പുതിയ ചിത്രം വിശകലനം ചെയ്യുക"
+
+#~ msgid "Debug Info"
+#~ msgstr "ഡീബഗ് വിവരങ്ങൾ"
+
+#~ msgid "© 2025 AgroSense AI. All rights reserved."
+#~ msgstr "© 2025 അഗ്രോസെൻസ് എഐ. എല്ലാ അവകാശങ്ങളും നീക്ഷിതം."
+
+#~ msgid ""
+#~ "Image is too small. Please upload "
+#~ "an image with dimensions at least "
+#~ "100x100 pixels."
+#~ msgstr ""
+#~ "ചിത്രം വളരെ ചെറുതാണ്. ദയവായി കുറഞ്ഞത് "
+#~ "100x100 പിക്സലുകളുള്ള ഒരു ചിത്രം അപ്‌ലോഡ് "
+#~ "ചെയ്യുക."
+
+#~ msgid "Selected"
+#~ msgstr "തിരഞ്ഞെടുത്തത്"
+
+#~ msgid "File selected"
+#~ msgstr "ഫയൽ തിരഞ്ഞെടുത്തു"
+
+#~ msgid "Webcam started"
+#~ msgstr "വെബ്ക്യാം ആരംഭിച്ചു"
+
+#~ msgid "Error accessing webcam"
+#~ msgstr "വെബ്ക്യാമിനെ ആക്സസ് ചെയ്യുന്നതിൽ പിശക്"
+
+#~ msgid "Failed to access webcam. Please ensure you have granted permission."
+#~ msgstr ""
+#~ "വെബ്ക്യാമിനെ ആക്സസ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു. "
+#~ "ദയവായി നിനക്ക് അനുമതി നൽകിയിട്ടുണ്ടെന്ന് "
+#~ "ഉറപ്പാക്കുക."
+
+#~ msgid "Captured webcam image"
+#~ msgstr "വെബ്ക്യാം ചിത്രം പകർത്തി"
+
+#~ msgid "Sending resized file for prediction"
+#~ msgstr "പ്രവചനത്തിനായി റീസൈസ് ചെയ്ത ഫയൽ അയയ്ക്കുന്നു"
+
+#~ msgid "Sending webcam frame for prediction"
+#~ msgstr "പ്രവചനത്തിനായി വെബ്ക്യാം ഫ്രെയിം അയയ്ക്കുന്നു"
+
+#~ msgid "Response status"
+#~ msgstr "പ്രതികരണ നില"
+
+#~ msgid "HTTP error! Status"
+#~ msgstr "HTTP പിശക്! നില"
+
+#~ msgid "Fetch error"
+#~ msgstr "ലഭിക്കുന്നതിൽ പിശക്"
+
+#~ msgid "Failed to fetch prediction"
+#~ msgstr "പ്രവചനം ലഭിക്കുന്നതിൽ പരാജയപ്പെട്ടു"
+
+#~ msgid "Please upload an image or capture from webcam."
+#~ msgstr ""
+#~ "ദയവായി ഒരു ചിത്രം അപ്‌ലോഡ് ചെയ്യുക "
+#~ "അല്ലെങ്കിൽ വെബ്ക്യാമിൽ നിന്ന് പകർത്തുക."
+
+#~ msgid "No image data to predict"
+#~ msgstr "പ്രവചിക്കാൻ ചിത്ര ഡാറ്റാ ഇല്ല"
+
+#~ msgid "N/A"
+#~ msgstr "ബാധകമല്ല"
+
+#~ msgid "Prediction error"
+#~ msgstr "പ്രവചന പിശക്"
+
+#~ msgid "Prediction successful"
+#~ msgstr "പ്രവചനം വിജയകരമായി"
+
+#~ msgid "App reset"
+#~ msgstr "ആപ്പ് റീസെറ്റ് ചെയ്തു"
+
+#~ msgid "Error changing language"
+#~ msgstr "ഭാഷ മാറ്റുന്നതിൽ പിശക്"
+
+#~ msgid "Failed to change language. Please try again."
+#~ msgstr "ഭാഷ മാറ്റുന്നതിൽ പരാജയപ്പെട്ടു. ദയവായി വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid ""
+#~ "Anthracnose is caused by a group "
+#~ "of fungi, most commonly from the "
+#~ "Colletotrichum species. This fungus thrives"
+#~ " in warm, moist, and humid "
+#~ "conditions, which makes it very common"
+#~ " in tropical and subtropical areas."
+#~ msgstr ""
+#~ "ആന്ത്രാക്‌നോസ് ഒരു കൂട്ടം ഫംഗസുകൾ മൂലമാണ് "
+#~ "ഉണ്ടാകുന്നത്, സാധാരണയായി കോളെറ്റോട്രൈക്കം ഇനങ്ങളിൽ"
+#~ " നിന്ന്. ഈ ഫംഗസ് ചൂടുള്ള, ഈർപ്പമുള്ള, "
+#~ "ഹ്യൂമിഡ് അന്തരീക്ഷത്തിൽ വളരുന്നു, ഇത് "
+#~ "ഉഷ്ണമേഖലാ, ഉപോഷ്ണമേഖലാ പ്രദേശങ്ങളിൽ വളരെ "
+#~ "സാധാരണമാണ്."
+
+#~ msgid ""
+#~ "Start with field hygiene. Regularly "
+#~ "remove and destroy all fallen leaves,"
+#~ " fruits, and infected plant parts."
+#~ msgstr ""
+#~ "കൃഷിസ്ഥല വൃത്തിയിൽ നിന്ന് തുടങ്ങുക. വീണുപോയ"
+#~ " ഇലകൾ, പഴങ്ങൾ, ബാധിച്ച ചെടി ഭാഗങ്ങൾ "
+#~ "എന്നിവ പതിവായി നീക്കം ചെയ്ത് നശിപ്പിക്കുക."
+
+#~ msgid ""
+#~ "Monitor the crop frequently, especially "
+#~ "after rainy or humid weather. If "
+#~ "early symptoms of anthracnose appear—like "
+#~ "black spots or leaf curl—remove those"
+#~ " parts immediately and destroy them "
+#~ "away from the field."
+#~ msgstr ""
+#~ "വിള പതിവായി നിരീക്ഷിക്കുക, പ്രത്യേകിച്ച് "
+#~ "മഴക്കാലത്തോ ഹ്യൂമിഡ് കാലാവസ്ഥയ്ക്ക് ശേഷമോ. "
+#~ "ആന്ത്രാക്‌നോസിന്റെ ആദ്യ ലക്ഷണങ്ങൾ—കറുത്ത പാടുകൾ "
+#~ "അല്ലെങ്കിൽ ഇല ചുരുളൽ—കാണപ്പെട്ടാൽ, ആ ഭാഗങ്ങൾ"
+#~ " ഉടനടി നീക്കം ചെയ്ത് കൃഷിസ്ഥലത്തിന് പുറത്ത്"
+#~ " നശിപ്പിക്കുക."
+
